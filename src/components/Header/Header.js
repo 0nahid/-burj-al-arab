@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import useAuth from '../../hooks/useAuth';
 import header from '../../images/header.png';
 import logo from '../../images/icons/logo.png';
-import useFirebase from './../../hooks/useFirebase';
+import './Header.css';
+
 
 const Header = () => {
-    const { user, logout } = useFirebase();
+    const { user, logout } = useAuth()
     return (
         <div style={{ backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(${header})` }} className="header">
             <nav className="nav">
@@ -20,9 +21,9 @@ const Header = () => {
                     <li>
                         <Link to="/login">Login</Link>
                     </li>
-                    <li>
+                    {user?.email && <li>
                         <Link className="btn-book" to="/book">Book</Link>
-                    </li>
+                    </li>}
                     {user?.email && <li>
                         <span style={{ color: 'white' }}>{user.displayName}</span>
                     </li>}
