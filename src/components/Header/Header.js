@@ -18,17 +18,17 @@ const Header = () => {
                     <li>
                         <Link to="/home">Home</Link>
                     </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
+
                     {user?.email && <li>
                         <Link className="btn-book" to="/book">Book</Link>
                     </li>}
                     {user?.email && <li>
                         <span style={{ color: 'white' }}>{user.displayName}</span>
                     </li>}
-                    {user?.email && <li>
+                    {user?.email ?<li>
                         <button onClick={logout} style={{ padding: '6px 15px', borderRadius: '4px', border: 'none', cursor: 'pointer' }}>Logout</button>
+                    </li> : <li>
+                        <Link to="/login">Login</Link>
                     </li>}
                 </ul>
             </nav>
